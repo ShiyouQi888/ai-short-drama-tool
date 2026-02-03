@@ -29,6 +29,17 @@ interface ConnectionLineProps {
   onDelete: (connectionId: string) => void;
 }
 
+// 基于字符串生成确定性的 HSL 颜色
+const getColorFromId = (id: string) => {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = id.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash % 360);
+  // 使用较高的饱和度和适中的亮度，确保在深色/浅色背景下都清晰且好看
+  return `hsl(${hue}, 85%, 60%)`;
+};
+
 export function ConnectionLine({
   connection,
   nodes,
@@ -37,6 +48,8 @@ export function ConnectionLine({
   const sourceNode = nodes.find((n) => n.id === connection.sourceNodeId);
   const targetNode = nodes.find((n) => n.id === connection.targetNodeId);
   const lineStyle = usePipelineStore((state) => state.lineStyle);
+
+  const dotColor = useMemo(() => getColorFromId(connection.id), [connection.id]);
 
   const pathData = useMemo(() => {
     if (!sourceNode || !targetNode) return "";
@@ -121,15 +134,33 @@ export function ConnectionLine({
       <path
         d={pathData}
         fill="none"
-        stroke="url(#connectionGradient)"
-        strokeWidth={2.5}
-        className="transition-all group-hover:stroke-destructive"
+        stroke={dotColor}
+        strokeWidth={2}
+        strokeOpacity={0.4}
+        className="transition-all group-hover:stroke-destructive group-hover:stroke-opacity-100"
         strokeLinecap="round"
       />
       {/* Animated flow dots */}
-      <circle r={3} fill="var(--primary)">
-        <animateMotion dur="2s" repeatCount="indefinite" path={pathData} />
-      </circle>
+      <g style={{ filter: `drop-shadow(0 0 5px ${dotColor})` }}>
+        {/* First dot set */}
+        <g>
+          <circle r={3} fill={dotColor}>
+            <animateMotion dur="3s" repeatCount="indefinite" path={pathData} />
+          </circle>
+          <circle r={5} fill={dotColor} fillOpacity={0.2}>
+            <animateMotion dur="3s" repeatCount="indefinite" path={pathData} />
+          </circle>
+        </g>
+        {/* Second dot set (delayed) */}
+        <g>
+          <circle r={3} fill={dotColor}>
+            <animateMotion dur="3s" repeatCount="indefinite" path={pathData} begin="1.5s" />
+          </circle>
+          <circle r={5} fill={dotColor} fillOpacity={0.2}>
+            <animateMotion dur="3s" repeatCount="indefinite" path={pathData} begin="1.5s" />
+          </circle>
+        </g>
+      </g>
     </g>
   );
 }
@@ -180,13 +211,6 @@ export function ConnectionSVG({
       height={height}
       style={{ overflow: "visible" }}
     >
-      <defs>
-        <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="var(--primary)" />
-          <stop offset="50%" stopColor="var(--accent)" />
-          <stop offset="100%" stopColor="var(--primary)" />
-        </linearGradient>
-      </defs>
       {children}
     </svg>
   );

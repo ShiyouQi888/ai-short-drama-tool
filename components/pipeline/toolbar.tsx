@@ -10,23 +10,40 @@ import {
   Spline,
   Minus,
   Route,
+  Sun,
+  Moon,
+  Monitor,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { usePipelineStore } from "@/lib/pipeline-store";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Toolbar() {
   const { scale, setScale, setOffset, runPipeline, clearCanvas, nodes, lineStyle, setLineStyle } =
     usePipelineStore();
   const [isRunning, setIsRunning] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // 确保在客户端挂载后再渲染主题相关 UI，避免 hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleZoomIn = () => {
     setScale(Math.min(scale + 0.1, 2));
@@ -158,6 +175,48 @@ export function Toolbar() {
             </TooltipTrigger>
             <TooltipContent>折线连线</TooltipContent>
           </Tooltip>
+        </div>
+
+        <Separator orientation="vertical" className="h-6" />
+
+        {/* Theme toggle */}
+        <div className="flex items-center gap-1">
+          <DropdownMenu>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                    {mounted && (
+                      <>
+                        {theme === "light" && <Sun className="h-4 w-4" />}
+                        {theme === "dark" && <Moon className="h-4 w-4" />}
+                        {theme === "system" && <Monitor className="h-4 w-4" />}
+                        {!["light", "dark", "system"].includes(theme || "") && (
+                          <Sun className="h-4 w-4" />
+                        )}
+                      </>
+                    )}
+                    {!mounted && <Sun className="h-4 w-4" />}
+                  </Button>
+                </DropdownMenuTrigger>
+              </TooltipTrigger>
+              <TooltipContent>切换主题</TooltipContent>
+            </Tooltip>
+            <DropdownMenuContent align="center" className="min-w-[8rem]">
+              <DropdownMenuItem onClick={() => setTheme("light")} className="gap-2">
+                <Sun className="h-4 w-4" />
+                <span>浅色</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")} className="gap-2">
+                <Moon className="h-4 w-4" />
+                <span>深色</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")} className="gap-2">
+                <Monitor className="h-4 w-4" />
+                <span>系统</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         <Separator orientation="vertical" className="h-6" />

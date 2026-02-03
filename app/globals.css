@@ -4,6 +4,54 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Light theme */
+  --background: oklch(0.98 0.01 260);
+  --foreground: oklch(0.12 0.01 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.01 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.01 260);
+  --primary: oklch(0.55 0.15 220);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.92 0.01 260);
+  --secondary-foreground: oklch(0.2 0.01 260);
+  --muted: oklch(0.95 0.01 260);
+  --muted-foreground: oklch(0.4 0.02 260);
+  --accent: oklch(0.92 0.02 260);
+  --accent-foreground: oklch(0.2 0.01 260);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0.02 260);
+  --input: oklch(0.95 0.01 260);
+  --ring: oklch(0.55 0.15 220);
+  --radius: 0.5rem;
+  
+  /* Node type colors (adapted for light) */
+  --node-input: oklch(0.6 0.18 180);
+  --node-script: oklch(0.65 0.18 280);
+  --node-storyboard: oklch(0.6 0.2 200);
+  --node-image: oklch(0.65 0.2 165);
+  --node-video: oklch(0.6 0.22 25);
+  --node-audio: oklch(0.65 0.2 85);
+  --node-flow: oklch(0.55 0.15 60);
+  --node-export: oklch(0.55 0.18 300);
+  
+  /* Canvas (adapted for light) */
+  --canvas-bg: oklch(0.97 0.01 260);
+  --canvas-grid: oklch(0.9 0.02 260);
+  --connection-line: oklch(0.6 0.1 220);
+  
+  --sidebar: oklch(0.98 0.01 260);
+  --sidebar-foreground: oklch(0.12 0.01 260);
+  --sidebar-primary: oklch(0.55 0.15 220);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.92 0.02 260);
+  --sidebar-accent-foreground: oklch(0.2 0.01 260);
+  --sidebar-border: oklch(0.88 0.02 260);
+  --sidebar-ring: oklch(0.55 0.15 220);
+}
+
+.dark {
   /* Deep tech dark theme - inspired by ComfyUI/Unreal Blueprints */
   --background: oklch(0.12 0.01 260);
   --foreground: oklch(0.92 0.01 260);
@@ -24,7 +72,6 @@
   --border: oklch(0.28 0.02 260);
   --input: oklch(0.2 0.015 260);
   --ring: oklch(0.65 0.18 220);
-  --radius: 0.5rem;
   
   /* Node type colors */
   --node-input: oklch(0.6 0.18 180);
@@ -49,12 +96,6 @@
   --sidebar-accent-foreground: oklch(0.92 0.01 260);
   --sidebar-border: oklch(0.28 0.02 260);
   --sidebar-ring: oklch(0.65 0.18 220);
-  
-  --chart-1: oklch(0.65 0.18 220);
-  --chart-2: oklch(0.55 0.2 165);
-  --chart-3: oklch(0.6 0.22 25);
-  --chart-4: oklch(0.65 0.2 85);
-  --chart-5: oklch(0.65 0.18 280);
 }
 
 @theme inline {
