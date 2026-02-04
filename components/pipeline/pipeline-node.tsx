@@ -113,7 +113,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
       case "text-input":
         return (
           <div className="space-y-2" onMouseDown={handleFieldInteraction}>
-            <Label htmlFor="text" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">文本内容</Label>
+            <Label htmlFor="text" className="text-[10px] uppercase tracking-wider text-muted-foreground">文本内容</Label>
             <Textarea
               id="text"
               placeholder="输入文本内容..."
@@ -128,7 +128,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
         return (
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">上传图片</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">上传图片</Label>
               <div className="flex h-16 cursor-pointer items-center justify-center rounded-md border border-dashed border-border bg-background/50 hover:border-primary/50 transition-colors">
                 <div className="text-center">
                   <Upload className="mx-auto h-4 w-4 text-muted-foreground" />
@@ -152,7 +152,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
         return (
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             <div className="space-y-1.5">
-              <Label htmlFor="prompt" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">故事提示词</Label>
+              <Label htmlFor="prompt" className="text-[10px] uppercase tracking-wider text-muted-foreground">故事提示词</Label>
               <Textarea
                 id="prompt"
                 placeholder="描述你想要创作的故事..."
@@ -163,7 +163,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             </div>
             {node.data.script && (
               <div className="space-y-1.5 rounded-md bg-accent/10 p-2 border border-accent/20">
-                <Label className="text-[10px] uppercase tracking-wider text-accent font-bold">生成剧本预览</Label>
+                <Label className="text-[10px] uppercase tracking-wider text-primary font-bold">生成剧本预览</Label>
                 <div className="max-h-[100px] overflow-y-auto text-[11px] leading-relaxed text-foreground/90 whitespace-pre-wrap scrollbar-thin">
                   {node.data.script as string}
                 </div>
@@ -171,11 +171,11 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             )}
             {node.data.episodeScripts && (node.data.episodeScripts as any[]).length > 0 && (
               <div className="space-y-2 pt-2 border-t border-border/30">
-                <Label className="text-[10px] uppercase tracking-wider text-accent font-bold">分集剧本预览</Label>
+                <Label className="text-[10px] uppercase tracking-wider text-primary font-bold">分集剧本预览</Label>
                 <div className="max-h-[150px] overflow-y-auto space-y-2 pr-1 custom-scrollbar">
                   {(node.data.episodeScripts as any[]).map((episode, i) => (
                     <div key={i} className="text-[11px] p-2 rounded bg-accent/5 border border-accent/10">
-                      <div className="font-bold text-accent mb-1">{episode.title}</div>
+                      <div className="font-bold text-primary mb-1">{episode.title}</div>
                       <div className="text-foreground/80 line-clamp-2">{episode.content}</div>
                     </div>
                   ))}
@@ -183,7 +183,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               </div>
             )}
             <div className="space-y-1.5">
-              <Label htmlFor="scriptType" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">创作类型</Label>
+              <Label htmlFor="scriptType" className="text-[10px] uppercase tracking-wider text-muted-foreground">创作类型</Label>
               <Select
                 value={(node.data.scriptType as string) || "short-drama"}
                 onValueChange={(value) => {
@@ -204,7 +204,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             {node.data.scriptType === "short-drama" && (
               <div className="grid grid-cols-2 gap-2 mt-1.5">
                 <div className="space-y-1.5">
-                  <Label htmlFor="episodes" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">总集数</Label>
+                  <Label htmlFor="episodes" className="text-[10px] uppercase tracking-wider text-muted-foreground">总集数</Label>
                   <Input
                     id="episodes"
                     type="number"
@@ -217,7 +217,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="episodeDuration" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">单集时长</Label>
+                  <Label htmlFor="episodeDuration" className="text-[10px] uppercase tracking-wider text-muted-foreground">单集时长</Label>
                   <Select
                     value={(node.data.episodeDuration as string) || "2min"}
                     onValueChange={(value) => updateNodeData(node.id, { episodeDuration: value })}
@@ -237,7 +237,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             )}
             <div className="grid grid-cols-2 gap-2 mt-2">
               <Button 
-                className="h-8 text-[10px] bg-accent/20 hover:bg-accent/30 text-accent border border-accent/30 flex items-center justify-center gap-1.5"
+                className="h-8 text-[10px] bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 flex items-center justify-center gap-1.5"
                 onClick={(e) => {
                   e.stopPropagation();
                   usePipelineStore.getState().generateCharactersFlow(node.id);
@@ -247,7 +247,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 生成角色
               </Button>
               <Button 
-                className="h-8 text-[10px] bg-accent/20 hover:bg-accent/30 text-accent border border-accent/30 flex items-center justify-center gap-1.5"
+                className="h-8 text-[10px] bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 flex items-center justify-center gap-1.5"
                 onClick={(e) => {
                   e.stopPropagation();
                   usePipelineStore.getState().generateEpisodesFlow(node.id);
@@ -269,9 +269,9 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               </div>
             )}
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">角色姓名 & 身份</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">角色姓名 & 身份</Label>
               <div className="flex items-center gap-2">
-                <div className="rounded-md bg-accent/10 px-2 py-1 text-xs font-bold text-accent border border-accent/20">
+                <div className="rounded-md bg-primary/10 px-2 py-1 text-xs font-bold text-primary border border-primary/20">
                   {(node.data.name as string) || "未知角色"}
                 </div>
                 {node.data.identity && (
@@ -291,19 +291,19 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               </div>
             )}
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">核心动机</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">核心动机</Label>
               <div className="rounded-md bg-background/30 p-2 text-[10px] italic text-muted-foreground border border-border/30">
                 {(node.data.motivation as string) || "暂无明确动机..."}
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">性格与背景</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">性格与背景</Label>
               <div className="rounded-md bg-background/50 p-2 text-[11px] leading-relaxed max-h-[100px] overflow-y-auto scrollbar-thin border border-border/50">
                 {(node.data.description as string) || "暂无描述..."}
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">外貌细节 (生图提示词)</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">外貌细节 (生图提示词)</Label>
               <div className="rounded-md bg-accent/5 p-2 text-[10px] text-foreground/80 border border-accent/10">
                 {(node.data.appearance as string) || "暂无细节..."}
               </div>
@@ -314,15 +314,15 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
         return (
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">集数信息</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">集数信息</Label>
               <div className="flex items-center gap-2">
-                <div className="flex-1 rounded-md bg-accent/10 px-2 py-1 text-xs font-bold text-accent border border-accent/20">
+                <div className="flex-1 rounded-md bg-primary/10 px-2 py-1 text-xs font-bold text-primary border border-primary/20">
                   {(node.data.title as string) || `第 ${node.data.episodeNumber} 集`}
                 </div>
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">本集剧本内容</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">本集剧本内容</Label>
               <div className="rounded-md bg-background/50 p-2 text-[11px] leading-relaxed min-h-[100px] max-h-[200px] overflow-y-auto scrollbar-thin border border-border/50">
                 {(node.data.content as string) || "等待剧本输入..."}
               </div>
@@ -335,7 +335,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">分镜数量</Label>
+                <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">分镜数量</Label>
                 <span className="text-[10px] font-medium">{node.data.sceneCount as number}</span>
               </div>
               <Slider
@@ -350,7 +350,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="aspectRatio" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">画面比例</Label>
+              <Label htmlFor="aspectRatio" className="text-[10px] uppercase tracking-wider text-muted-foreground">画面比例</Label>
               <Select
                 value={(node.data.aspectRatio as string) || "16:9"}
                 onValueChange={(value) => updateNodeData(node.id, { aspectRatio: value })}
@@ -367,11 +367,11 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             </div>
             {node.data.scenes && (node.data.scenes as any[]).length > 0 && (
               <div className="space-y-2 pt-2 border-t border-border/30">
-                <Label className="text-[10px] uppercase tracking-wider text-accent font-bold">分镜内容预览</Label>
+                <Label className="text-[10px] uppercase tracking-wider text-primary font-bold">分镜内容预览</Label>
                 <div className="max-h-[150px] overflow-y-auto space-y-2 pr-1 scrollbar-thin">
                   {(node.data.scenes as any[]).map((scene, i) => (
                     <div key={i} className="text-[11px] p-2 rounded bg-accent/5 border border-accent/10">
-                      <div className="font-bold text-accent mb-1">分镜 {i + 1}</div>
+                      <div className="font-bold text-primary mb-1">分镜 {i + 1}</div>
                       <div className="text-foreground/80 line-clamp-2">{scene.content}</div>
                     </div>
                   ))}
@@ -385,7 +385,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
         return (
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">图片来源</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">图片来源</Label>
               <div className="grid grid-cols-2 gap-2">
                 <Button
                   variant={node.data.isLocalUpload ? "outline" : "default"}
@@ -429,7 +429,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 )}
                 <div className="grid grid-cols-2 gap-2">
                   <div className="space-y-1.5">
-                    <Label htmlFor="style" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">画风</Label>
+                    <Label htmlFor="style" className="text-[10px] uppercase tracking-wider text-muted-foreground">画风</Label>
                     <Select
                       value={(node.data.style as string) || "cinematic"}
                       onValueChange={(value) => updateNodeData(node.id, { style: value })}
@@ -445,7 +445,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                     </Select>
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="quality" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">画质</Label>
+                    <Label htmlFor="quality" className="text-[10px] uppercase tracking-wider text-muted-foreground">画质</Label>
                     <Select
                       value={(node.data.quality as string) || "high"}
                       onValueChange={(value) => updateNodeData(node.id, { quality: value })}
@@ -484,7 +484,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             )}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">帧率</Label>
+                <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">帧率</Label>
                 <span className="text-[10px] font-medium">{node.data.fps as number} FPS</span>
               </div>
               <Slider
@@ -497,7 +497,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="transition" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">转场效果</Label>
+              <Label htmlFor="transition" className="text-[10px] uppercase tracking-wider text-muted-foreground">转场效果</Label>
               <Select
                 value={(node.data.transition as string) || "fade"}
                 onValueChange={(value) => updateNodeData(node.id, { transition: value })}
@@ -520,14 +520,14 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             {/* 提取的文本展示 */}
             <div className="space-y-1.5">
-              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">配音文本</Label>
+              <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">配音文本</Label>
               <div className="rounded-md bg-muted/50 p-2 text-[11px] text-muted-foreground min-h-[40px] max-h-[80px] overflow-y-auto scrollbar-thin">
                 {(node.data.text as string) || "等待输入..."}
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="voice" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">配音</Label>
+              <Label htmlFor="voice" className="text-[10px] uppercase tracking-wider text-muted-foreground">配音</Label>
               <Select
                 value={(node.data.voice as string) || "narrator"}
                 onValueChange={(value) => updateNodeData(node.id, { voice: value })}
@@ -555,7 +555,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             )}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <Label className="text-[10px] uppercase tracking-wider text-muted-foreground/70">语速</Label>
+                <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">语速</Label>
                 <span className="text-[10px] font-medium">{((node.data.speed as number) || 1).toFixed(1)}x</span>
               </div>
               <Slider
@@ -573,7 +573,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
       case "merge":
         return (
           <div className="space-y-1.5" onMouseDown={handleFieldInteraction}>
-            <Label htmlFor="mergeMode" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">合并模式</Label>
+            <Label htmlFor="mergeMode" className="text-[10px] uppercase tracking-wider text-muted-foreground">合并模式</Label>
             <Select
               value={(node.data.mergeMode as string) || "concat"}
               onValueChange={(value) => updateNodeData(node.id, { mergeMode: value })}
@@ -593,7 +593,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
       case "condition":
         return (
           <div className="space-y-1.5" onMouseDown={handleFieldInteraction}>
-            <Label htmlFor="condition" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">条件表达式</Label>
+            <Label htmlFor="condition" className="text-[10px] uppercase tracking-wider text-muted-foreground">条件表达式</Label>
             <Input
               id="condition"
               placeholder="输入条件..."
@@ -610,7 +610,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
         return (
           <div className="grid grid-cols-2 gap-2" onMouseDown={handleFieldInteraction}>
             <div className="space-y-1.5">
-              <Label htmlFor="format" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">格式</Label>
+              <Label htmlFor="format" className="text-[10px] uppercase tracking-wider text-muted-foreground">格式</Label>
               <Select
                 value={(node.data.format as string) || "mp4"}
                 onValueChange={(value) => updateNodeData(node.id, { format: value })}
@@ -626,7 +626,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               </Select>
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="resolution" className="text-[10px] uppercase tracking-wider text-muted-foreground/70">分辨率/质量</Label>
+              <Label htmlFor="resolution" className="text-[10px] uppercase tracking-wider text-muted-foreground">分辨率/质量</Label>
               <Select
                 value={(node.data.resolution as string) || "1080p"}
                 onValueChange={(value) => updateNodeData(node.id, { resolution: value })}
@@ -715,7 +715,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
       case "running":
         return <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />;
       case "completed":
-        return <Check className="h-3.5 w-3.5 text-accent" />;
+        return <Check className="h-3.5 w-3.5 text-primary" />;
       case "error":
         return <AlertCircle className="h-3.5 w-3.5 text-destructive" />;
       default:
@@ -725,16 +725,16 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
 
   const getNodeColor = (type: NodeType) => {
     const colors: Record<NodeType, string> = {
-      "text-input": "border-node-input/60 bg-node-input/10",
-      "image-upload": "border-node-input/60 bg-node-input/10",
-      script: "border-node-script/60 bg-node-script/10",
-      storyboard: "border-node-storyboard/60 bg-node-storyboard/10",
-      image: "border-node-image/60 bg-node-image/10",
-      video: "border-node-video/60 bg-node-video/10",
-      audio: "border-node-audio/60 bg-node-audio/10",
-      merge: "border-node-flow/60 bg-node-flow/10",
-      condition: "border-node-flow/60 bg-node-flow/10",
-      export: "border-node-export/60 bg-node-export/10",
+      "text-input": "border-node-input/60 bg-card/95",
+      "image-upload": "border-node-input/60 bg-card/95",
+      script: "border-node-script/60 bg-card/95",
+      storyboard: "border-node-storyboard/60 bg-card/95",
+      image: "border-node-image/60 bg-card/95",
+      video: "border-node-video/60 bg-card/95",
+      audio: "border-node-audio/60 bg-card/95",
+      merge: "border-node-flow/60 bg-card/95",
+      condition: "border-node-flow/60 bg-card/95",
+      export: "border-node-export/60 bg-card/95",
     };
     return colors[type];
   };
@@ -936,7 +936,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
           <div className="flex items-center gap-1.5">
             {node.isAsync ? (
               <>
-                <Zap className="h-3 w-3 text-accent" />
+                <Zap className="h-3 w-3 text-primary" />
                 <span>异步执行</span>
               </>
             ) : (
