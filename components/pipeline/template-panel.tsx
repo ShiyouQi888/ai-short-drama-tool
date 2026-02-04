@@ -401,7 +401,7 @@ export function TemplatePanel({ className }: TemplatePanelProps) {
                     "justify-start gap-2.5 px-3 py-5 transition-all duration-300",
                     selectedCategory === category 
                       ? "bg-primary text-primary-foreground shadow-md shadow-primary/20 scale-[1.01]" 
-                      : "hover:bg-muted/50 text-muted-foreground hover:translate-x-1"
+                      : "hover:bg-muted text-muted-foreground hover:translate-x-1"
                   )}
                   onClick={() => setSelectedCategory(category)}
                 >
@@ -416,16 +416,16 @@ export function TemplatePanel({ className }: TemplatePanelProps) {
           </div>
 
           {/* Right Area Wrapper */}
-          <div className="relative flex flex-1 min-w-0 flex-col bg-background/50 overflow-hidden">
+          <div className="relative flex flex-1 min-w-0 flex-col bg-background/95 overflow-hidden">
             {/* Header (Non-zoomable) */}
-            <div className="z-10 shrink-0 p-6 pb-2 flex items-center justify-between bg-gradient-to-b from-background/80 to-transparent">
+            <div className="z-10 shrink-0 p-6 pb-2 flex items-center justify-between bg-gradient-to-b from-background/95 to-transparent">
               <div>
                 <h2 className="text-2xl font-black tracking-tighter text-foreground/90">{selectedCategory} 模板</h2>
                 <p className="text-xs text-muted-foreground mt-0.5 font-medium">
                   滚轮缩放视图 • 右侧边缘滚动面板
                 </p>
               </div>
-              <div className="flex items-center gap-2.5 rounded-xl bg-muted/50 px-4 py-1.5 text-[10px] font-bold text-muted-foreground border border-border/50">
+              <div className="flex items-center gap-2.5 rounded-xl bg-muted/80 px-4 py-1.5 text-[10px] font-bold text-muted-foreground border border-border/50">
                 <Sparkles className="h-3.5 w-3.5 text-primary animate-pulse" />
                 <span>{filteredTemplates.length} 个预设流程</span>
               </div>
@@ -448,7 +448,7 @@ export function TemplatePanel({ className }: TemplatePanelProps) {
                     <div
                       key={template.id}
                       className={cn(
-                        "group relative flex flex-row items-center gap-4 cursor-pointer rounded-2xl border border-border/50 bg-card/40 p-4",
+                        "group relative flex flex-row items-center gap-4 cursor-pointer rounded-2xl border border-border/50 bg-card/90 p-4",
                         "transition-all duration-500 hover:border-primary/40 hover:bg-card hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5"
                       )}
                       onClick={() => applyTemplate(template)}
@@ -469,7 +469,7 @@ export function TemplatePanel({ className }: TemplatePanelProps) {
                           </span>
                         </div>
                         
-                        <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground/70 group-hover:text-muted-foreground transition-colors font-medium">
+                        <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground group-hover:text-muted-foreground transition-colors font-medium">
                           {template.description}
                         </p>
                         

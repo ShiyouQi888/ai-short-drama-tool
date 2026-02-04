@@ -119,7 +119,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               placeholder="输入文本内容..."
               value={(node.data.text as string) || ""}
               onChange={(e) => updateNodeData(node.id, { text: e.target.value })}
-              className="min-h-[80px] resize-none bg-background/50 text-xs"
+              className="min-h-[80px] resize-none bg-background/80 text-xs"
             />
           </div>
         );
@@ -129,7 +129,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             <div className="space-y-1.5">
               <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">上传图片</Label>
-              <div className="flex h-16 cursor-pointer items-center justify-center rounded-md border border-dashed border-border bg-background/50 hover:border-primary/50 transition-colors">
+              <div className="flex h-16 cursor-pointer items-center justify-center rounded-md border border-dashed border-border bg-background/80 hover:border-primary/50 transition-colors">
                 <div className="text-center">
                   <Upload className="mx-auto h-4 w-4 text-muted-foreground" />
                   <p className="mt-0.5 text-[10px] text-muted-foreground">
@@ -158,11 +158,11 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 placeholder="描述你想要创作的故事..."
                 value={(node.data.prompt as string) || ""}
                 onChange={(e) => updateNodeData(node.id, { prompt: e.target.value })}
-                className="min-h-[60px] resize-none bg-background/50 text-xs"
+                className="min-h-[60px] resize-none bg-background/80 text-xs"
               />
             </div>
             {node.data.script && (
-              <div className="space-y-1.5 rounded-md bg-accent/10 p-2 border border-accent/20">
+              <div className="space-y-1.5 rounded-md bg-accent/20 p-2 border border-accent/30">
                 <Label className="text-[10px] uppercase tracking-wider text-primary font-bold">生成剧本预览</Label>
                 <div className="max-h-[100px] overflow-y-auto text-[11px] leading-relaxed text-foreground/90 whitespace-pre-wrap scrollbar-thin">
                   {node.data.script as string}
@@ -174,7 +174,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 <Label className="text-[10px] uppercase tracking-wider text-primary font-bold">分集剧本预览</Label>
                 <div className="max-h-[150px] overflow-y-auto space-y-2 pr-1 custom-scrollbar">
                   {(node.data.episodeScripts as any[]).map((episode, i) => (
-                    <div key={i} className="text-[11px] p-2 rounded bg-accent/5 border border-accent/10">
+                    <div key={i} className="text-[11px] p-2 rounded bg-accent/10 border border-accent/20">
                       <div className="font-bold text-primary mb-1">{episode.title}</div>
                       <div className="text-foreground/80 line-clamp-2">{episode.content}</div>
                     </div>
@@ -190,7 +190,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                   updateNodeData(node.id, { scriptType: value });
                 }}
               >
-                <SelectTrigger className="h-7 bg-background/50 text-xs">
+                <SelectTrigger className="h-7 bg-background/80 text-xs">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -213,7 +213,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                       const value = parseInt(e.target.value) || 0;
                       updateNodeData(node.id, { episodes: value });
                     }}
-                    className="h-7 bg-background/50 text-xs"
+                    className="h-7 bg-background/80 text-xs"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -222,7 +222,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                     value={(node.data.episodeDuration as string) || "2min"}
                     onValueChange={(value) => updateNodeData(node.id, { episodeDuration: value })}
                   >
-                    <SelectTrigger className="h-7 bg-background/50 text-xs">
+                    <SelectTrigger className="h-7 bg-background/80 text-xs">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -271,11 +271,11 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             <div className="space-y-1.5">
               <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">角色姓名 & 身份</Label>
               <div className="flex items-center gap-2">
-                <div className="rounded-md bg-primary/10 px-2 py-1 text-xs font-bold text-primary border border-primary/20">
+                <div className="rounded-md bg-primary/20 px-2 py-1 text-xs font-bold text-primary border border-primary/30">
                   {(node.data.name as string) || "未知角色"}
                 </div>
                 {node.data.identity && (
-                  <div className="rounded-md bg-muted/50 px-2 py-1 text-[10px] text-muted-foreground border border-border/50">
+                  <div className="rounded-md bg-muted px-2 py-1 text-[10px] text-muted-foreground border border-border/50">
                     {node.data.identity as string}
                   </div>
                 )}
@@ -292,38 +292,38 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             )}
             <div className="space-y-1.5">
               <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">核心动机</Label>
-              <div className="rounded-md bg-background/30 p-2 text-[10px] italic text-muted-foreground border border-border/30">
+              <div className="rounded-md bg-background/90 p-2 text-[10px] italic text-muted-foreground border border-border/30">
                 {(node.data.motivation as string) || "暂无明确动机..."}
               </div>
             </div>
             <div className="space-y-1.5">
               <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">性格与背景</Label>
-              <div className="rounded-md bg-background/50 p-2 text-[11px] leading-relaxed max-h-[100px] overflow-y-auto scrollbar-thin border border-border/50">
+              <div className="rounded-md bg-background/95 p-2 text-[11px] leading-relaxed max-h-[100px] overflow-y-auto scrollbar-thin border border-border/50">
                 {(node.data.description as string) || "暂无描述..."}
               </div>
             </div>
             <div className="space-y-1.5">
               <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">外貌细节 (生图提示词)</Label>
-              <div className="rounded-md bg-accent/5 p-2 text-[10px] text-foreground/80 border border-accent/10">
+              <div className="rounded-md bg-accent/20 p-2 text-[11px] text-foreground border border-accent/30">
                 {(node.data.appearance as string) || "暂无细节..."}
               </div>
             </div>
           </div>
         );
-  case "episode":
+      case "episode":
         return (
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             <div className="space-y-1.5">
               <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">集数信息</Label>
               <div className="flex items-center gap-2">
-                <div className="flex-1 rounded-md bg-primary/10 px-2 py-1 text-xs font-bold text-primary border border-primary/20">
+                <div className="flex-1 rounded-md bg-primary/20 px-2 py-1 text-xs font-bold text-primary border border-primary/30">
                   {(node.data.title as string) || `第 ${node.data.episodeNumber} 集`}
                 </div>
               </div>
             </div>
             <div className="space-y-1.5">
               <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">本集剧本内容</Label>
-              <div className="rounded-md bg-background/50 p-2 text-[11px] leading-relaxed min-h-[100px] max-h-[200px] overflow-y-auto scrollbar-thin border border-border/50">
+              <div className="rounded-md bg-background/90 p-2 text-[11px] leading-relaxed min-h-[100px] max-h-[200px] overflow-y-auto scrollbar-thin border border-border/50">
                 {(node.data.content as string) || "等待剧本输入..."}
               </div>
             </div>
@@ -355,7 +355,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 value={(node.data.aspectRatio as string) || "16:9"}
                 onValueChange={(value) => updateNodeData(node.id, { aspectRatio: value })}
               >
-                <SelectTrigger className="h-7 bg-background/50 text-xs">
+                <SelectTrigger className="h-7 bg-background/90 text-xs">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -370,7 +370,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 <Label className="text-[10px] uppercase tracking-wider text-primary font-bold">分镜内容预览</Label>
                 <div className="max-h-[150px] overflow-y-auto space-y-2 pr-1 scrollbar-thin">
                   {(node.data.scenes as any[]).map((scene, i) => (
-                    <div key={i} className="text-[11px] p-2 rounded bg-accent/5 border border-accent/10">
+                    <div key={i} className="text-[11px] p-2 rounded bg-accent/20 border border-accent/30">
                       <div className="font-bold text-primary mb-1">分镜 {i + 1}</div>
                       <div className="text-foreground/80 line-clamp-2">{scene.content}</div>
                     </div>
@@ -408,7 +408,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
 
             {node.data.isLocalUpload ? (
               <div className="space-y-2">
-                <div className="flex h-20 cursor-pointer items-center justify-center rounded-md border border-dashed border-border bg-background/50 hover:border-primary/50 transition-colors">
+                <div className="flex h-20 cursor-pointer items-center justify-center rounded-md border border-dashed border-border bg-background/90 hover:border-primary/50 transition-colors">
                   <div className="text-center">
                     <Upload className="mx-auto h-4 w-4 text-muted-foreground" />
                     <p className="mt-0.5 text-[10px] text-muted-foreground">点击上传本地分镜图</p>
@@ -434,7 +434,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                       value={(node.data.style as string) || "cinematic"}
                       onValueChange={(value) => updateNodeData(node.id, { style: value })}
                     >
-                      <SelectTrigger className="h-7 bg-background/50 text-xs">
+                      <SelectTrigger className="h-7 bg-background/90 text-xs">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -450,7 +450,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                       value={(node.data.quality as string) || "high"}
                       onValueChange={(value) => updateNodeData(node.id, { quality: value })}
                     >
-                      <SelectTrigger className="h-7 bg-background/50 text-xs">
+                      <SelectTrigger className="h-7 bg-background/90 text-xs">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -470,8 +470,8 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
         return (
           <div className="space-y-3" onMouseDown={handleFieldInteraction}>
             {node.data.videoUrl && (
-              <div className="space-y-1.5 rounded-md bg-node-video/10 p-2 border border-node-video/20">
-                <Label className="text-[10px] uppercase tracking-wider text-node-video font-bold">视频预览</Label>
+              <div className="space-y-1.5 rounded-md bg-node-video/30 p-2 border border-node-video/40">
+                <Label className="text-[10px] uppercase tracking-wider text-primary font-bold">视频预览</Label>
                 <div className="aspect-video w-full bg-black rounded overflow-hidden flex items-center justify-center group/vid relative">
                   <Video className="h-8 w-8 text-white/20" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/vid:opacity-100 transition-opacity bg-black/40">
@@ -502,7 +502,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 value={(node.data.transition as string) || "fade"}
                 onValueChange={(value) => updateNodeData(node.id, { transition: value })}
               >
-                <SelectTrigger className="h-7 bg-background/50 text-xs">
+                <SelectTrigger className="h-7 bg-background/90 text-xs">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -521,7 +521,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
             {/* 提取的文本展示 */}
             <div className="space-y-1.5">
               <Label className="text-[10px] uppercase tracking-wider text-muted-foreground">配音文本</Label>
-              <div className="rounded-md bg-muted/50 p-2 text-[11px] text-muted-foreground min-h-[40px] max-h-[80px] overflow-y-auto scrollbar-thin">
+              <div className="rounded-md bg-muted p-2 text-[11px] text-muted-foreground min-h-[40px] max-h-[80px] overflow-y-auto scrollbar-thin border border-border/50">
                 {(node.data.text as string) || "等待输入..."}
               </div>
             </div>
@@ -532,7 +532,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 value={(node.data.voice as string) || "narrator"}
                 onValueChange={(value) => updateNodeData(node.id, { voice: value })}
               >
-                <SelectTrigger className="h-7 bg-background/50 text-xs">
+                <SelectTrigger className="h-7 bg-background/90 text-xs">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -543,7 +543,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               </Select>
             </div>
             {node.data.audioUrl && (
-              <div className="space-y-1.5 rounded-md bg-primary/10 p-2 border border-primary/20">
+              <div className="space-y-1.5 rounded-md bg-primary/30 p-2 border border-primary/40">
                 <div className="flex items-center justify-between">
                   <Label className="text-[10px] uppercase tracking-wider text-primary font-bold">音频预览</Label>
                   <span className="text-[10px] text-muted-foreground">{(node.data.duration as number)?.toFixed(1)}s</span>
@@ -578,7 +578,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               value={(node.data.mergeMode as string) || "concat"}
               onValueChange={(value) => updateNodeData(node.id, { mergeMode: value })}
             >
-              <SelectTrigger className="h-7 bg-background/50 text-xs">
+              <SelectTrigger className="h-7 bg-background/90 text-xs">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -599,7 +599,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
               placeholder="输入条件..."
               value={(node.data.condition as string) || ""}
               onChange={(e) => updateNodeData(node.id, { condition: e.target.value })}
-              className="h-7 bg-background/50 text-xs"
+              className="h-7 bg-background/90 text-xs"
             />
           </div>
         );
@@ -615,7 +615,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 value={(node.data.format as string) || "mp4"}
                 onValueChange={(value) => updateNodeData(node.id, { format: value })}
               >
-                <SelectTrigger className="h-7 bg-background/50 text-xs">
+                <SelectTrigger className="h-7 bg-background/90 text-xs">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -631,7 +631,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
                 value={(node.data.resolution as string) || "1080p"}
                 onValueChange={(value) => updateNodeData(node.id, { resolution: value })}
               >
-                <SelectTrigger className="h-7 bg-background/50 text-xs">
+                <SelectTrigger className="h-7 bg-background/90 text-xs">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -728,6 +728,8 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
       "text-input": "border-node-input/60 bg-card/95",
       "image-upload": "border-node-input/60 bg-card/95",
       script: "border-node-script/60 bg-card/95",
+      character: "border-node-character/60 bg-card/95",
+      episode: "border-node-script/60 bg-card/95",
       storyboard: "border-node-storyboard/60 bg-card/95",
       image: "border-node-image/60 bg-card/95",
       video: "border-node-video/60 bg-card/95",
@@ -744,6 +746,8 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
       "text-input": "bg-node-input",
       "image-upload": "bg-node-input",
       script: "bg-node-script",
+      character: "bg-node-character",
+      episode: "bg-node-script",
       storyboard: "bg-node-storyboard",
       image: "bg-node-image",
       video: "bg-node-video",
@@ -760,6 +764,8 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
       "text-input": "bg-node-input",
       "image-upload": "bg-node-input",
       script: "bg-node-script",
+      character: "bg-node-character",
+      episode: "bg-node-script",
       storyboard: "bg-node-storyboard",
       image: "bg-node-image",
       video: "bg-node-video",
@@ -948,9 +954,9 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
           </div>
           <span className={cn(
             "rounded-full px-1.5 py-0.5 font-medium",
-            node.status === "idle" && "bg-muted/50 text-muted-foreground",
+            node.status === "idle" && "bg-muted text-muted-foreground",
             node.status === "running" && "bg-primary/20 text-primary animate-pulse",
-            node.status === "completed" && "bg-accent/20 text-accent",
+            node.status === "completed" && "bg-primary/20 text-primary",
             node.status === "error" && "bg-destructive/20 text-destructive"
           )}>
             {node.status.toUpperCase()}
@@ -958,7 +964,7 @@ export function PipelineNode({ node, scale }: PipelineNodeProps) {
         </div>
 
         {/* Node Fields */}
-        <div className="custom-scrollbar max-h-[350px] overflow-y-auto rounded-md border border-border/50 bg-card/30 p-2.5 pr-1.5 shadow-inner">
+        <div className="custom-scrollbar max-h-[350px] overflow-y-auto rounded-md border border-border/50 bg-card p-2.5 pr-1.5 shadow-inner">
           <div className="pr-1">
             {node.status === "error" && node.data.error && (
               <div className="mb-3 rounded-md bg-destructive/10 p-2.5 border border-destructive/20 flex gap-2 items-start animate-in fade-in slide-in-from-top-1">

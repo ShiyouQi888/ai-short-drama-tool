@@ -273,11 +273,11 @@ export function PropertyPanel() {
             </div>
             {selectedNode.data.scenes && (selectedNode.data.scenes as any[]).length > 0 && (
               <div className="space-y-2 pt-2 border-t border-border/50">
-                <Label className="text-xs font-bold text-accent uppercase tracking-wider">分镜内容预览</Label>
+                <Label className="text-xs font-bold text-primary uppercase tracking-wider">分镜内容预览</Label>
                 <div className="space-y-2">
                   {(selectedNode.data.scenes as any[]).map((scene, i) => (
                     <div key={i} className="rounded-lg bg-secondary/30 p-3 border border-border/50">
-                      <div className="text-[10px] font-bold text-accent mb-1 uppercase">分镜 {i + 1}</div>
+                      <div className="text-[10px] font-bold text-primary mb-1 uppercase">分镜 {i + 1}</div>
                       <div className="text-xs text-foreground/90 leading-relaxed">{scene.content}</div>
                       {scene.imagePrompt && (
                         <div className="mt-2 pt-2 border-t border-border/20">
